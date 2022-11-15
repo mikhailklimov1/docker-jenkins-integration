@@ -4,7 +4,7 @@ pipeline {
 		GITHUB_CREDENTIALS=credentials('github_creds')
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub_creds')
 	}
-//	stages {
+	stages {
 //		stage('test') {
 //			steps {
 //				sh 'whoami'
