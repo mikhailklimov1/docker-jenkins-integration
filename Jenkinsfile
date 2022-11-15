@@ -4,14 +4,14 @@ pipeline {
 		GITHUB_CREDENTIALS=credentials('github_creds')
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub_creds')
 	}
-	stages {
-		stage('test') {
-			steps {
-				sh 'whoami'
-				sh 'echo $GITHUB_CREDENTIALS_USR'
-				sh 'echo $DOCKERHUB_CREDENTIALS_USR'
-			}
-		}
+//	stages {
+//		stage('test') {
+//			steps {
+//				sh 'whoami'
+//				sh 'echo $GITHUB_CREDENTIALS_USR'
+//				sh 'echo $DOCKERHUB_CREDENTIALS_USR'
+//			}
+//		}
 		stage("Git Checkout") {
 			steps {
 				git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/mikhailklimov1/docker-jenkins-integration', branch: 'test_branch'
