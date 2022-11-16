@@ -18,12 +18,12 @@ pipeline {
 				echo 'Git Checkout Completed'
 			}
 		}
-//		stage('Build Docker Image') {
-//			steps {
-//				sh 'sudo docker build -t mikhailklimov/docker-jenkins-integration:latest .'
-//				echo 'Build Image Completed'
-//			}
-//		}
+		stage('Build Docker Image') {
+			steps {
+				sh 'podman build -t mikhailklimov/docker-jenkins-integration:latest .'
+				echo 'Build Image Completed'
+			}
+		}
 //		stage('Login to Docker Hub') {
 //			steps {
 //				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
