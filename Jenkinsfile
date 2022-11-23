@@ -5,25 +5,25 @@ pipeline {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub_creds')
 	}
     stages {
-       stage('test') {
-            steps {
+//       stage('test') {
+//            steps {
 //                sh 'echo "test"'
 //                sh 'docker run hello-world'
-                sh 'whoami'
-                sh 'pwd'
+//                sh 'whoami'
+//                sh 'pwd'
 //                sh 'echo $GITHUB_CREDENTIALS_USR'
 //                sh 'echo $DOCKERHUB_CREDENTIALS_USR'
-            }
-        }
+//            }
+//        }
         stage("Git checkout") {
             steps {
-                git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/mikhailklimov1/docker-jenkins-integration', branch: 'main'
+                git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/mikhailklimov1/docker-jenkins-integration', branch: 'nodejs_test'
 	            echo 'Git Checkout Completed'
             }
         }
         stage('Build image') {
 			steps {
-				sh 'podman build -t mikhailklimov/docker-jenkins-integration:latest .'
+				sh 'podman build -t mikhailklimov/nodejs-hello-world:latest .'
 				echo 'Build Image Completed'
             }
         }
@@ -41,7 +41,7 @@ pipeline {
 		}
 		stage('Remove image from host') {
 	        steps {
-	            sh 'podman rmi mikhailklimov/docker-jenkins-integration:latest'
+	            sh 'podman rmi mikhailklimov/nodejs-hello-world:latest'
 	        }
 		}
 	}
