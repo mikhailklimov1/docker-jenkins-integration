@@ -35,7 +35,7 @@ pipeline {
 		}
 		stage('Push image to Docker Hub') {
 			steps {
-				sh 'podman push mikhailklimov/docker-jenkins-integration:latest'
+				sh 'podman push mikhailklimov/nodejs-hello-world:latest'
 				echo 'Push Image Completed' 
 			}
 		}
