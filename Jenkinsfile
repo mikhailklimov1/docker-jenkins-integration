@@ -15,19 +15,26 @@ pipeline {
 //                sh 'echo $DOCKERHUB_CREDENTIALS_USR'
 //            }
 //        }
-        stage("Git checkout") {
-            steps {
-                git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/mikhailklimov1/docker-jenkins-integration', branch: 'nodejs_test'
-	            echo 'Git Checkout Completed'
-            }
-        }
-        stage('Build image') {
+	    	stage("Git checkout") {
+            		steps {
+                		git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/mikhailklimov1/docker-jenkins-integration', branch: 'nodejs_test'
+	            		echo 'Git Checkout Completed'
+            		}
+        	}
+		stage('Linter test') {
+			steps{
+                		script {
+                    			sh "echo Linter test"
+                		}
+            		}
+        	}
+        	stage('Build image') {
 			steps {
 				sh 'podman build -t mikhailklimov/nodejs-hello-world:latest .'
 				echo 'Build Image Completed'
-            }
-        }
-        stage('Login to Docker Hub') {
+            		}
+        	}
+        	stage('Login to Docker Hub') {
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | podman login docker.io -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				echo 'Login Completed'
