@@ -46,14 +46,15 @@ pipeline {
 				echo 'Push Image Completed' 
 			}
 		}
-//		stage('Remove image from host') {
-//	        steps {
-//	            sh 'podman rmi mikhailklimov/nodejs-hello-world:latest'
-//	        }
-//		}
+		stage('Remove image from host') {
+	        	steps {
+	        		sh 'podman rmi mikhailklimov/nodejs-hello-world:latest'
+			}
+		}
+		
 	}
 	post {
-	    always {
+		always {
 			sh 'podman logout docker.io'           
 		}
 	}
